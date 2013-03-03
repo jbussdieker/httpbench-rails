@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  load_test_id: 1
+  total_time: 1.5
+
+two:
+  load_test_id: 1
+  total_time: 1.5

@@ -1,0 +1,38 @@
+<div class="btn-toolbar">
+  <%= link_to 'Back', load_tests_path, :class => 'btn' %>
+</div>
+
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#graph" data-toggle="tab">Graph</a></li>
+    <li><a href="#raw" data-toggle="tab">Raw</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="graph">
+      <div id="placeholder" style="width: 640px; height: 320px"></div>
+      <script type="text/javascript">
+	$(function() {
+          data = [
+            <% @load_test.results.each_with_index do |result,index| %>[<%= index %>,<%= result.duration %>],<% end %>
+          ];
+          $.plot("#placeholder", [data]);
+        })
+      </script>
+    </div>
+    <div class="tab-pane" id="raw">
+      <table class="table table-bordered table-striped">
+        <tr>
+          <th>Date/Time</th>
+          <th>Duration</th>
+        </tr>
+
+      <% @load_test.results.each do |result| %>
+        <tr>
+          <td><%= result.started %></td>
+          <td><%= result.duration %></td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>

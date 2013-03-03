@@ -1,0 +1,49 @@
+<h1>Load Tests</h1>
+
+<div class="btn-toolbar">
+  <%= link_to 'New Load test', new_load_test_path, :class => 'btn' %>
+</div>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Site</th>
+    <th>Page</th>
+    <th>Duration</th>
+    <th>Rps</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @load_tests.each do |load_test| %>
+  <tr>
+    <td><%= load_test.page.site.name %></td>
+    <td><%= load_test.page.name %></td>
+    <td><%= load_test.duration %></td>
+    <td><%= load_test.rps %></td>
+    <td><%= load_test_status(load_test) %></td>
+    <td><%= link_to 'Show', load_test %></td>
+    <td><%= link_to 'Edit', edit_load_test_path(load_test) %></td>
+    <td><%= link_to 'Destroy', load_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="container">
+  <div class="row">
+    <div id="placeholder" style="width: 960px; height: 320px"></div>
+    <script type="text/javascript">
+      $(function() {
+        data = [
+          <% @load_tests.each do |load_test| %>
+          { label: "<%= load_test.page.site.name %> - <%= load_test.page.name %>", data: [
+          <% load_test.results.each_with_index do |result,index| %>[<%= index %>,<%= result.duration %>],<% end %>
+          ]},
+          <% end %>
+        ];
+        $.plot("#placeholder", data);
+      })
+    </script>
+  </div>
+</div>

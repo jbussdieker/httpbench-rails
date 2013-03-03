@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/jbussdieker/httpbench.git
+  revision: eb861656f4e001ac85329f974e78520ed305f041
+  specs:
+    httpbench (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -92,7 +98,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12.2)
       json (~> 1.4)
-    redis (3.0.2)
+    redis (3.0.3)
     redis-namespace (1.2.1)
       redis (~> 3.0.0)
     sass (3.2.6)
@@ -100,7 +106,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    sidekiq (2.7.4)
+    sidekiq (2.7.5)
       celluloid (~> 0.12.0)
       connection_pool (~> 1.0)
       multi_json (~> 1)
@@ -130,6 +136,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
+  httpbench!
   jquery-rails
   mysql2
   rails (= 3.2.12)

@@ -5,10 +5,27 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <style>body { margin-top: 50px }</style>
 </head>
 <body>
 
-<%= yield %>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">AWS Console</a>
+      <ul class="nav">
+        <li class="<%= "active" if params[:controller] == 'sites' %>"><%= link_to "Sites", sites_path %></li>
+        <li class="<%= "active" if params[:controller] == 'load_tests' %>"><%= link_to "Load Tests", load_tests_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <% if notice %>
+    <div class="alert alert-notice" id="notice"><%= notice %></div>
+  <% end %>
+  <%= yield %>
+</div>
 
 </body>
 </html>

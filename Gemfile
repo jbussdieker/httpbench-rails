@@ -8,6 +8,7 @@ gem 'rails', '3.2.12'
 gem 'mysql2'
 gem 'sidekiq'
 gem 'devise'
+gem 'httpbench', :git => 'git://github.com/jbussdieker/httpbench.git'
 
 
 # Gems used only for assets and not required

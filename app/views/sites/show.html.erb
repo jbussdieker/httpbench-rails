@@ -1,0 +1,71 @@
+<h2><%= @site.name %></h2>
+
+<div class="btn-toolbar">
+  <%= link_to 'Back', sites_path, :class => 'btn' %>
+</div>
+
+<p>
+  <b>Address:</b>
+  <%= @site.address %>
+</p>
+
+<p>
+  <b>Port:</b>
+  <%= @site.port %>
+</p>
+
+<p>
+  <b>Host:</b>
+  <%= @site.host %>
+</p>
+
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#pages" data-toggle="tab">Pages</a></li>
+    <li><a href="#load_tests" data-toggle="tab">Load Tests</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="pages">
+      <div class="btn-toolbar">
+        <%= link_to 'New Page', new_site_page_path(@site), :class => 'btn' %>
+      </div>
+
+      <table class="table table-bordered table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Path</th>
+          <th></th>
+        </tr>
+
+      <% @site.pages.each do |page| %>
+        <tr>
+          <td><%= page.name %></td>
+          <td><%= page.path %></td>
+          <td><%= link_to 'Destroy', site_page_path(@site, page), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+    <div class="tab-pane" id="load_tests">
+      <table class="table table-bordered table-striped">
+        <tr>
+          <th>Date/Time</th>
+          <th>Duration</th>
+          <th>RPS</th>
+          <th>Status</th>
+        </tr>
+
+      <% @site.pages.each do |page| %>
+        <% page.load_tests.each do |test| %>
+          <tr>
+            <td><%= link_to test.created_at, load_test_path(test) %></td>
+            <td><%= test.duration %></td>
+            <td><%= test.rps %></td>
+            <td><%= load_test_status(test) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<%= form_for(@load_test) do |f| %>
+  <% if @load_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@load_test.errors.count, "error") %> prohibited this load_test from being saved:</h2>
+
+      <ul>
+      <% @load_test.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :page_id %><br />
+    <%= f.select :page_id, Page.all.collect {|p| ["#{p.site.name} - #{p.name}", p.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :duration %><br />
+    <%= f.number_field :duration %>
+  </div>
+  <div class="field">
+    <%= f.label :rps %><br />
+    <%= f.text_field :rps %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
