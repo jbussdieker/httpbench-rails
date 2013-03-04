@@ -4,4 +4,5 @@ Httpbench::Application.routes.draw do
   resources :sites do
     resources :pages
   end
+  root :to => 'sites#index'
 end
